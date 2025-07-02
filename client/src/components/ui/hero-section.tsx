@@ -34,7 +34,7 @@ export function HeroSection() {
       {/* Artist Name */}
       <motion.h1
         variants={itemVariants}
-        className="font-futuristic font-black text-4xl md:text-6xl lg:text-8xl text-white letter-spacing-massive 
+        className="font-futuristic font-black text-3xl md:text-5xl lg:text-6xl text-white letter-spacing-ultra 
                    animate-float text-glow animate-glow"
       >
         A R B O R E L I C S

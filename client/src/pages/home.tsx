@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { LoadingScreen } from "@/components/ui/loading-screen";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { HeroSection } from "@/components/ui/hero-section";
+import { CircuitTree } from "@/components/ui/circuit-tree";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,20 +23,22 @@ export default function Home() {
       
       {isLoading && <LoadingScreen />}
       
-      {/* Temporary CSS-based background until 3D is fixed */}
+      {/* Background with circuit tree */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: isLoading ? 0 : 1 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className="absolute inset-0 z-0 bg-gradient-to-br from-black via-blue-900/20 to-purple-900/30"
+        className="absolute inset-0 z-0"
         style={{
           background: `
-            radial-gradient(circle at 30% 50%, rgba(0, 255, 240, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 70% 80%, rgba(107, 13, 173, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 30% 50%, rgba(0, 255, 240, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 70% 80%, rgba(107, 13, 173, 0.08) 0%, transparent 50%),
             linear-gradient(135deg, rgba(0, 0, 0, 1) 0%, rgba(13, 13, 13, 1) 100%)
           `
         }}
-      />
+      >
+        <CircuitTree />
+      </motion.div>
       
       <motion.div
         initial={{ opacity: 0 }}
