@@ -2,16 +2,16 @@ import { motion } from "framer-motion";
 
 export function CircuitTree() {
   const audioWaves = [
-    { id: 1, x: 50, y: 120, width: 60, delay: 0, color: "pink" },
-    { id: 2, x: 320, y: 140, width: 65, delay: 0.2, color: "purple" },
-    { id: 3, x: 30, y: 200, width: 55, delay: 0.4, color: "pink" },
-    { id: 4, x: 340, y: 180, width: 60, delay: 0.6, color: "pink" },
-    { id: 5, x: 80, y: 80, width: 50, delay: 0.8, color: "purple" },
-    { id: 6, x: 300, y: 80, width: 55, delay: 1.0, color: "purple" },
-    { id: 7, x: 25, y: 280, width: 50, delay: 1.2, color: "pink" },
-    { id: 8, x: 345, y: 260, width: 55, delay: 0.3, color: "purple" },
-    { id: 9, x: 60, y: 320, width: 45, delay: 0.9, color: "pink" },
-    { id: 10, x: 320, y: 320, width: 50, delay: 0.5, color: "pink" },
+    { id: 1, x: 50, y: 120, width: 60, delay: 0, color: "pink", variant: "rounded" },
+    { id: 2, x: 320, y: 140, width: 65, delay: 0.2, color: "purple", variant: "sharp" },
+    { id: 3, x: 30, y: 200, width: 55, delay: 0.4, color: "pink", variant: "wide" },
+    { id: 4, x: 340, y: 180, width: 60, delay: 0.6, color: "pink", variant: "tall" },
+    { id: 5, x: 80, y: 80, width: 50, delay: 0.8, color: "purple", variant: "rounded" },
+    { id: 6, x: 300, y: 80, width: 55, delay: 1.0, color: "purple", variant: "wide" },
+    { id: 7, x: 25, y: 280, width: 50, delay: 1.2, color: "pink", variant: "sharp" },
+    { id: 8, x: 345, y: 260, width: 55, delay: 0.3, color: "purple", variant: "tall" },
+    { id: 9, x: 60, y: 320, width: 45, delay: 0.9, color: "pink", variant: "wide" },
+    { id: 10, x: 320, y: 320, width: 50, delay: 0.5, color: "pink", variant: "rounded" },
   ];
 
   const circuitPaths = [
@@ -98,25 +98,57 @@ export function CircuitTree() {
           />
         ))}
 
-        {/* Electrical pulse effects */}
-        {circuitPaths.slice(0, 8).map((path, index) => (
+        {/* Electrical cascade animations - trunk to branches */}
+        {[
+          // Main trunk pulse
+          { pathIndex: 0, delay: 0, duration: 1.5 },
+          
+          // Left side cascading pulses
+          { pathIndex: 1, delay: 0.8, duration: 2 },
+          { pathIndex: 2, delay: 1.6, duration: 2.2 },
+          { pathIndex: 3, delay: 2.4, duration: 2.5 },
+          { pathIndex: 4, delay: 1.2, duration: 2.8 },
+          { pathIndex: 5, delay: 2.0, duration: 3 },
+          { pathIndex: 6, delay: 2.8, duration: 3.2 },
+          
+          // Right side cascading pulses (symmetrical)
+          { pathIndex: 7, delay: 0.8, duration: 2 },
+          { pathIndex: 8, delay: 1.6, duration: 2.2 },
+          { pathIndex: 9, delay: 2.4, duration: 2.5 },
+          { pathIndex: 10, delay: 1.2, duration: 2.8 },
+          { pathIndex: 11, delay: 2.0, duration: 3 },
+          { pathIndex: 12, delay: 2.8, duration: 3.2 },
+          
+          // Upper branching pulses
+          { pathIndex: 17, delay: 3.2, duration: 2 },
+          { pathIndex: 18, delay: 3.2, duration: 2 },
+          { pathIndex: 19, delay: 3.8, duration: 2.5 },
+          { pathIndex: 20, delay: 3.8, duration: 2.5 },
+          
+          // Terminal branch pulses
+          { pathIndex: 21, delay: 4.5, duration: 1.5 },
+          { pathIndex: 22, delay: 4.5, duration: 1.5 },
+          { pathIndex: 23, delay: 4.8, duration: 1.5 },
+          { pathIndex: 24, delay: 4.8, duration: 1.5 },
+        ].map((pulse, index) => (
           <motion.path
             key={`pulse-${index}`}
-            d={path}
-            stroke="rgba(0, 255, 240, 0.8)"
-            strokeWidth="3"
+            d={circuitPaths[pulse.pathIndex]}
+            stroke="rgba(0, 255, 240, 0.9)"
+            strokeWidth="2.5"
             fill="none"
-            filter="blur(1px)"
+            filter="blur(0.5px)"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{
-              pathLength: [0, 0.3, 0],
+              pathLength: [0, 0.4, 0],
               opacity: [0, 1, 0]
             }}
             transition={{
-              duration: 2,
-              delay: index * 0.3,
+              duration: pulse.duration,
+              delay: pulse.delay,
               repeat: Infinity,
-              ease: "easeInOut"
+              repeatDelay: 5,
+              ease: "easeOut"
             }}
           />
         ))}
@@ -148,29 +180,63 @@ export function CircuitTree() {
           />
         ))}
 
-        {/* Audio wave foliage */}
+        {/* Audio wave foliage with variants */}
         {audioWaves.map((wave) => (
           <g key={wave.id}>
             {Array.from({ length: 10 }).map((_, i) => {
-              const barHeight = Math.abs(Math.sin(i * 0.5) * (20 + i * 2) + 12);
+              // Different variants create different shapes
+              let barHeight, barWidth, borderRadius, xSpacing;
+              
+              switch (wave.variant) {
+                case "rounded":
+                  barHeight = Math.abs(Math.sin(i * 0.4) * (18 + i * 1.5) + 10);
+                  barWidth = 3.5;
+                  borderRadius = 2;
+                  xSpacing = 4.5;
+                  break;
+                case "sharp":
+                  barHeight = Math.abs(Math.sin(i * 0.8) * (25 + i * 3) + 8);
+                  barWidth = 2.5;
+                  borderRadius = 0;
+                  xSpacing = 3.5;
+                  break;
+                case "wide":
+                  barHeight = Math.abs(Math.sin(i * 0.3) * (15 + i * 1) + 14);
+                  barWidth = 4;
+                  borderRadius = 1;
+                  xSpacing = 5;
+                  break;
+                case "tall":
+                  barHeight = Math.abs(Math.sin(i * 0.6) * (30 + i * 2.5) + 12);
+                  barWidth = 2.5;
+                  borderRadius = 1.5;
+                  xSpacing = 3.8;
+                  break;
+                default:
+                  barHeight = Math.abs(Math.sin(i * 0.5) * (20 + i * 2) + 12);
+                  barWidth = 3;
+                  borderRadius = 1.5;
+                  xSpacing = 4;
+              }
+              
               const yOffset = wave.y - barHeight / 2;
               const isPink = wave.color === "pink";
               const colorVariations = isPink 
-                ? ['255, 20, 147', '255, 105, 180', '255, 69, 165'] // Deep pink, hot pink, medium pink
-                : ['138, 43, 226', '147, 112, 219', '186, 85, 211']; // Blue violet, medium slate blue, medium orchid
+                ? ['255, 20, 147', '255, 105, 180', '255, 69, 165'] 
+                : ['138, 43, 226', '147, 112, 219', '186, 85, 211'];
               
               return (
                 <motion.rect
                   key={i}
-                  x={wave.x + i * 4}
+                  x={wave.x + i * xSpacing}
                   y={yOffset}
-                  width="3"
+                  width={barWidth}
                   height={barHeight}
                   fill={`rgba(${colorVariations[i % 3]}, 0.9)`}
-                  rx="1.5"
+                  rx={borderRadius}
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ 
-                    height: [barHeight, barHeight * 1.3, barHeight],
+                    height: [barHeight, barHeight * 1.4, barHeight],
                     opacity: [0.9, 1, 0.9] 
                   }}
                   transition={{
