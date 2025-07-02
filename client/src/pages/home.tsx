@@ -6,10 +6,14 @@ import { CustomCursor } from "@/components/ui/custom-cursor";
 import { HeroSection } from "@/components/ui/hero-section";
 import { CircuitTree } from "@/components/ui/circuit-tree";
 import { ContactForm } from "@/components/ui/contact-form";
+import { MusicDialog } from "@/components/ui/music-dialog";
+import { ShowsDialog } from "@/components/ui/shows-dialog";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isMusicOpen, setIsMusicOpen] = useState(false);
+  const [isShowsOpen, setIsShowsOpen] = useState(false);
 
   useEffect(() => {
     // Simulate loading time for 3D scene
@@ -49,7 +53,11 @@ export default function Home() {
         transition={{ duration: 1, delay: 1 }}
         className="relative z-10 h-full flex items-center justify-center"
       >
-        <HeroSection onContactClick={() => setIsContactOpen(true)} />
+        <HeroSection 
+          onContactClick={() => setIsContactOpen(true)}
+          onMusicClick={() => setIsMusicOpen(true)}
+          onShowsClick={() => setIsShowsOpen(true)}
+        />
       </motion.div>
       
 
@@ -59,26 +67,34 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isLoading ? 0 : 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.5 }}
-        className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-4"
+        className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex justify-center space-x-6"
       >
-        <a href="#" className="w-12 h-12 glass-morphism rounded-lg flex items-center justify-center 
-                         hover:bg-white/10 transition-all duration-300 group">
-          <FaSpotify className="w-5 h-5 group-hover:text-[var(--cosmic-ethereal)] transition-colors" />
+        <a href="#" className="text-[var(--cosmic-ethereal)] hover:text-[var(--cosmic-ethereal)] 
+                         hover:scale-105 transition-all duration-300">
+          <FaSpotify className="w-6 h-6" />
         </a>
-        <a href="#" className="w-12 h-12 glass-morphism rounded-lg flex items-center justify-center 
-                         hover:bg-white/10 transition-all duration-300 group">
-          <FaSoundcloud className="w-5 h-5 group-hover:text-[var(--cosmic-ethereal)] transition-colors" />
+        <a href="#" className="text-[var(--cosmic-ethereal)] hover:text-[var(--cosmic-ethereal)] 
+                         hover:scale-105 transition-all duration-300">
+          <FaSoundcloud className="w-6 h-6" />
         </a>
-        <a href="#" className="w-12 h-12 glass-morphism rounded-lg flex items-center justify-center 
-                         hover:bg-white/10 transition-all duration-300 group">
-          <FaInstagram className="w-5 h-5 group-hover:text-[var(--cosmic-ethereal)] transition-colors" />
+        <a href="#" className="text-[var(--cosmic-ethereal)] hover:text-[var(--cosmic-ethereal)] 
+                         hover:scale-105 transition-all duration-300">
+          <FaInstagram className="w-6 h-6" />
         </a>
       </motion.div>
       
-      {/* Contact Form Modal */}
+      {/* Dialog Modals */}
       <ContactForm 
         isOpen={isContactOpen} 
         onClose={() => setIsContactOpen(false)} 
+      />
+      <MusicDialog 
+        isOpen={isMusicOpen} 
+        onClose={() => setIsMusicOpen(false)} 
+      />
+      <ShowsDialog 
+        isOpen={isShowsOpen} 
+        onClose={() => setIsShowsOpen(false)} 
       />
     </div>
   );

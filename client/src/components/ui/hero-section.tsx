@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 
 interface HeroSectionProps {
   onContactClick?: () => void;
+  onMusicClick?: () => void;
+  onShowsClick?: () => void;
 }
 
-export function HeroSection({ onContactClick }: HeroSectionProps) {
+export function HeroSection({ onContactClick, onMusicClick, onShowsClick }: HeroSectionProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -59,6 +61,7 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={onMusicClick}
           className="glass-morphism px-6 py-3 rounded-lg text-sm tracking-wide 
                      hover:bg-white/10 transition-all duration-300 group"
         >
@@ -67,6 +70,7 @@ export function HeroSection({ onContactClick }: HeroSectionProps) {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={onShowsClick}
           className="glass-morphism px-6 py-3 rounded-lg text-sm tracking-wide 
                      hover:bg-white/10 transition-all duration-300 group"
         >
