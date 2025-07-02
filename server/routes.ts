@@ -21,7 +21,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Create transporter (you'll need to configure this with real SMTP settings)
-      const transporter = nodemailer.createTransporter({
+      const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com", // or your SMTP provider
         port: 587,
         secure: false,

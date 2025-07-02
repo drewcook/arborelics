@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  onContactClick?: () => void;
+}
+
+export function HeroSection({ onContactClick }: HeroSectionProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -71,6 +75,7 @@ export function HeroSection() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={onContactClick}
           className="glass-morphism px-6 py-3 rounded-lg text-sm tracking-wide 
                      hover:bg-white/10 transition-all duration-300 group"
         >

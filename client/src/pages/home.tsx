@@ -49,7 +49,7 @@ export default function Home() {
         transition={{ duration: 1, delay: 1 }}
         className="relative z-10 h-full flex items-center justify-center"
       >
-        <HeroSection />
+        <HeroSection onContactClick={() => setIsContactOpen(true)} />
       </motion.div>
       
       {/* Bottom Navigation */}
@@ -68,38 +68,25 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Contact Button */}
-        <motion.button
-          onClick={() => setIsContactOpen(true)}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 2 }}
-          className="glass-morphism px-6 py-3 rounded-lg flex items-center space-x-3 
-                     hover:bg-white/10 transition-all duration-300 group"
-        >
-          <FaEnvelope className="w-4 h-4 group-hover:text-[var(--cosmic-ethereal)] transition-colors" />
-          <span className="text-xs letter-spacing-ultra group-hover:text-[var(--cosmic-ethereal)] transition-colors">
-            CONTACT
-          </span>
-        </motion.button>
+
       </motion.div>
       
-      {/* Side Social Links */}
+      {/* Bottom Center Social Links */}
       <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: isLoading ? 0 : 1, x: 0 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: isLoading ? 0 : 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.5 }}
-        className="fixed right-8 top-1/2 transform -translate-y-1/2 z-20 space-y-4"
+        className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-4"
       >
-        <a href="#" className="block w-12 h-12 glass-morphism rounded-lg flex items-center justify-center 
+        <a href="#" className="w-12 h-12 glass-morphism rounded-lg flex items-center justify-center 
                          hover:bg-white/10 transition-all duration-300 group">
           <FaSpotify className="w-5 h-5 group-hover:text-[var(--cosmic-ethereal)] transition-colors" />
         </a>
-        <a href="#" className="block w-12 h-12 glass-morphism rounded-lg flex items-center justify-center 
+        <a href="#" className="w-12 h-12 glass-morphism rounded-lg flex items-center justify-center 
                          hover:bg-white/10 transition-all duration-300 group">
           <FaSoundcloud className="w-5 h-5 group-hover:text-[var(--cosmic-ethereal)] transition-colors" />
         </a>
-        <a href="#" className="block w-12 h-12 glass-morphism rounded-lg flex items-center justify-center 
+        <a href="#" className="w-12 h-12 glass-morphism rounded-lg flex items-center justify-center 
                          hover:bg-white/10 transition-all duration-300 group">
           <FaInstagram className="w-5 h-5 group-hover:text-[var(--cosmic-ethereal)] transition-colors" />
         </a>
