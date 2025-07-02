@@ -6,10 +6,12 @@ import { CustomCursor } from "@/components/ui/custom-cursor";
 import { HeroSection } from "@/components/ui/hero-section";
 import { CircuitTree } from "@/components/ui/circuit-tree";
 import { ContactForm } from "@/components/ui/contact-form";
+import { useMousePosition } from "@/hooks/use-mouse-position";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const { x, y } = useMousePosition();
 
   useEffect(() => {
     // Simulate loading time for 3D scene
@@ -20,6 +22,10 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Calculate mouse offset for background movement (opposite direction)
+  const mouseOffsetX = typeof window !== 'undefined' ? (x - window.innerWidth / 2) * -0.02 : 0;
+  const mouseOffsetY = typeof window !== 'undefined' ? (y - window.innerHeight / 2) * -0.02 : 0;
+
   return (
     <div className="h-screen w-screen bg-black text-white overflow-hidden relative">
       <CustomCursor />
@@ -29,8 +35,16 @@ export default function Home() {
       {/* Background with circuit tree */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: isLoading ? 0 : 1 }}
-        transition={{ duration: 1, delay: 0.5 }}
+        animate={{ 
+          opacity: isLoading ? 0 : 1,
+          x: mouseOffsetX,
+          y: mouseOffsetY
+        }}
+        transition={{ 
+          opacity: { duration: 1, delay: 0.5 },
+          x: { duration: 0.6, ease: "easeOut" },
+          y: { duration: 0.6, ease: "easeOut" }
+        }}
         className="absolute inset-0 z-0"
         style={{
           background: `
@@ -52,24 +66,7 @@ export default function Home() {
         <HeroSection onContactClick={() => setIsContactOpen(true)} />
       </motion.div>
       
-      {/* Bottom Navigation */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: isLoading ? 0 : 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.5 }}
-        className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center space-y-4"
-      >
-        <div className="glass-morphism px-4 py-2 rounded-full">
-          <div className="flex items-center space-x-4 text-xs letter-spacing-ultra">
-            <span className="text-white/60">SCROLL TO EXPLORE</span>
-            <div className="w-4 h-6 border border-white/30 rounded-full flex justify-center">
-              <div className="w-1 h-2 bg-[var(--cosmic-ethereal)] rounded-full mt-1 animate-bounce"></div>
-            </div>
-          </div>
-        </div>
-        
 
-      </motion.div>
       
       {/* Bottom Center Social Links */}
       <motion.div
