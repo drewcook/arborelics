@@ -9,16 +9,21 @@ interface ReusableDialogProps {
   children: React.ReactNode;
 }
 
-export function ReusableDialog({ isOpen, onClose, title, children }: ReusableDialogProps) {
+export function ReusableDialog({
+  isOpen,
+  onClose,
+  title,
+  children,
+}: ReusableDialogProps) {
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isOpen) {
+      if (event.key === "Escape" && isOpen) {
         onClose();
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [isOpen, onClose]);
   return (
     <AnimatePresence>
@@ -32,7 +37,7 @@ export function ReusableDialog({ isOpen, onClose, title, children }: ReusableDia
             className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
             onClick={onClose}
           />
-          
+
           {/* Dialog */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -47,7 +52,7 @@ export function ReusableDialog({ isOpen, onClose, title, children }: ReusableDia
             >
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-futuristic letter-spacing-ultra text-[var(--cosmic-ethereal)]">
+                <h2 className="text-xl font-futuristic letter-spacing-ultra text-[var(--primary)]">
                   {title}
                 </h2>
                 <button
@@ -59,9 +64,7 @@ export function ReusableDialog({ isOpen, onClose, title, children }: ReusableDia
               </div>
 
               {/* Content */}
-              <div className="space-y-4">
-                {children}
-              </div>
+              <div className="space-y-4">{children}</div>
             </div>
           </motion.div>
         </>

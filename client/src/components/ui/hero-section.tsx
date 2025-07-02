@@ -6,16 +6,20 @@ interface HeroSectionProps {
   onShowsClick?: () => void;
 }
 
-export function HeroSection({ onContactClick, onMusicClick, onShowsClick }: HeroSectionProps) {
+export function HeroSection({
+  onContactClick,
+  onMusicClick,
+  onShowsClick,
+}: HeroSectionProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.3,
-        delayChildren: 0.5
-      }
-    }
+        delayChildren: 0.5,
+      },
+    },
   };
 
   const itemVariants = {
@@ -25,9 +29,9 @@ export function HeroSection({ onContactClick, onMusicClick, onShowsClick }: Hero
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -45,7 +49,7 @@ export function HeroSection({ onContactClick, onMusicClick, onShowsClick }: Hero
       >
         A R B O R E L I C S
       </motion.h1>
-      
+
       {/* Subtitle */}
       <motion.div variants={itemVariants} className="mt-8 space-y-2">
         <p className="text-[var(--cosmic-ethereal)] text-lg md:text-xl letter-spacing-ultra font-light animate-pulse-slow">
@@ -55,9 +59,12 @@ export function HeroSection({ onContactClick, onMusicClick, onShowsClick }: Hero
           Where ancient wisdom meets future sound
         </p>
       </motion.div>
-      
+
       {/* Navigation Links */}
-      <motion.div variants={itemVariants} className="mt-12 flex justify-center space-x-8">
+      <motion.div
+        variants={itemVariants}
+        className="mt-12 flex justify-center space-x-8"
+      >
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -65,7 +72,9 @@ export function HeroSection({ onContactClick, onMusicClick, onShowsClick }: Hero
           className="glass-morphism px-6 py-3 rounded-lg text-sm tracking-wide 
                      hover:bg-white/10 transition-all duration-300 group"
         >
-          <span className="group-hover:text-[var(--cosmic-ethereal)] transition-colors">MUSIC</span>
+          <span className="group-hover:text-[var(--cosmic-ethereal)] transition-colors">
+            MUSIC
+          </span>
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -74,7 +83,9 @@ export function HeroSection({ onContactClick, onMusicClick, onShowsClick }: Hero
           className="glass-morphism px-6 py-3 rounded-lg text-sm tracking-wide 
                      hover:bg-white/10 transition-all duration-300 group"
         >
-          <span className="group-hover:text-[var(--cosmic-ethereal)] transition-colors">SHOWS</span>
+          <span className="group-hover:text-[var(--cosmic-ethereal)] transition-colors">
+            SHOWS
+          </span>
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -83,7 +94,9 @@ export function HeroSection({ onContactClick, onMusicClick, onShowsClick }: Hero
           className="glass-morphism px-6 py-3 rounded-lg text-sm tracking-wide 
                      hover:bg-white/10 transition-all duration-300 group"
         >
-          <span className="group-hover:text-[var(--cosmic-ethereal)] transition-colors">CONTACT</span>
+          <span className="group-hover:text-[var(--cosmic-ethereal)] transition-colors">
+            CONTACT
+          </span>
         </motion.button>
       </motion.div>
     </motion.div>

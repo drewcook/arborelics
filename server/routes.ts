@@ -34,7 +34,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Email options
       const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: "arborelics@proton.me",
+        to: "contact@arborelics.com",
         subject: `New Contact Form Message from ${name}`,
         html: `
           <h2>New Message from ARBORELICS Website</h2>
