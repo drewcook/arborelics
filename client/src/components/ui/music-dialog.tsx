@@ -43,7 +43,7 @@ export function MusicDialog({ isOpen, onClose }: MusicDialogProps) {
             className="glass-morphism px-4 py-3 rounded-lg flex items-center space-x-3 
                        hover:bg-white/10 transition-all duration-300 group block"
           >
-            <service.icon className="w-5 h-5 group-hover:text-[var(--cosmic-ethereal)] transition-colors" />
+            <service.icon className="w-5 h-5 text-[var(--cosmic-ethereal)] group-hover:text-[var(--cosmic-ethereal)] transition-colors" />
             <span className="text-sm letter-spacing-ultra group-hover:text-[var(--cosmic-ethereal)] transition-colors">
               {service.name.toUpperCase()}
             </span>

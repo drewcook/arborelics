@@ -29,7 +29,7 @@
   --cosmic-void: hsl(0, 0%, 0%);
   --cosmic-deep: hsl(240, 30%, 15%);
   --cosmic-space: hsl(224, 39%, 21%);
-  --cosmic-ethereal: hsl(180, 100%, 50%);
+  --cosmic-ethereal: hsl(340, 100%, 65%);
   --cosmic-nebula: hsl(270, 100%, 35%);
 }
 
@@ -64,6 +64,11 @@
     @apply font-sans antialiased bg-background text-foreground overflow-hidden;
     font-family: 'Inter', sans-serif;
     cursor: none;
+  }
+  
+  /* Remove pointer cursor from all interactive elements */
+  button, a, input, textarea, select {
+    cursor: none !important;
   }
 }
 

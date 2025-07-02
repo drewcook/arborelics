@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { useEffect } from "react";
 
 interface ReusableDialogProps {
   isOpen: boolean;
@@ -9,6 +10,16 @@ interface ReusableDialogProps {
 }
 
 export function ReusableDialog({ isOpen, onClose, title, children }: ReusableDialogProps) {
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen, onClose]);
   return (
     <AnimatePresence>
       {isOpen && (
@@ -36,7 +47,7 @@ export function ReusableDialog({ isOpen, onClose, title, children }: ReusableDia
             >
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-futuristic letter-spacing-ultra text-white">
+                <h2 className="text-xl font-futuristic letter-spacing-ultra text-[var(--cosmic-ethereal)]">
                   {title}
                 </h2>
                 <button
