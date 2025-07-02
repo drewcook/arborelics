@@ -6,12 +6,10 @@ import { CustomCursor } from "@/components/ui/custom-cursor";
 import { HeroSection } from "@/components/ui/hero-section";
 import { CircuitTree } from "@/components/ui/circuit-tree";
 import { ContactForm } from "@/components/ui/contact-form";
-import { useMousePosition } from "@/hooks/use-mouse-position";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const { x, y } = useMousePosition();
 
   useEffect(() => {
     // Simulate loading time for 3D scene
@@ -22,10 +20,6 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Calculate mouse offset for background movement (opposite direction)
-  const mouseOffsetX = typeof window !== 'undefined' ? (x - window.innerWidth / 2) * -0.02 : 0;
-  const mouseOffsetY = typeof window !== 'undefined' ? (y - window.innerHeight / 2) * -0.02 : 0;
-
   return (
     <div className="h-screen w-screen bg-black text-white overflow-hidden relative">
       <CustomCursor />
@@ -35,16 +29,8 @@ export default function Home() {
       {/* Background with circuit tree */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ 
-          opacity: isLoading ? 0 : 1,
-          x: mouseOffsetX,
-          y: mouseOffsetY
-        }}
-        transition={{ 
-          opacity: { duration: 1, delay: 0.5 },
-          x: { duration: 0.6, ease: "easeOut" },
-          y: { duration: 0.6, ease: "easeOut" }
-        }}
+        animate={{ opacity: isLoading ? 0 : 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
         className="absolute inset-0 z-0"
         style={{
           background: `
