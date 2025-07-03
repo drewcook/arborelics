@@ -45,6 +45,33 @@ button, a, input, textarea, select {
     0 0 40px rgba(0, 255, 240, 0.2);
 }
 
+.text-outline-white {
+  text-shadow:
+    -1px -1px 0 white,
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white,
+    -1px 0 0 white,
+    1px 0 0 white,
+    0 -1px 0 white,
+    0 1px 0 white;
+}
+
+.text-outline-glow {
+  text-shadow:
+    -2px -2px 0 black,
+    2px -2px 0 black,
+    -2px 2px 0 black,
+    2px 2px 0 black,
+    -2px 0 0 black,
+    2px 0 0 black,
+    0 -2px 0 black,
+    0 2px 0 black,
+    0 0 20px rgba(0, 255, 240, 0.5),
+    0 0 30px rgba(0, 255, 240, 0.3),
+    0 0 40px rgba(0, 255, 240, 0.2);
+}
+
 .font-futuristic {
   font-family: 'Orbitron', monospace;
 }
@@ -53,8 +80,12 @@ button, a, input, textarea, select {
   letter-spacing: 0.5em;
 }
 
-.letter-spacing-ultra {
+.letter-spacing-medium {
   letter-spacing: 0.3em;
+}
+
+.letter-spacing-ultra {
+  letter-spacing: 0.6em;
 }
 
 .animate-float {
@@ -62,7 +93,7 @@ button, a, input, textarea, select {
 }
 
 .animate-glow {
-  animation: glow 3s ease-in-out infinite alternate;
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
 .animate-pulse-slow {

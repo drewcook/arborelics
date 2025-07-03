@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { AnimatedText } from "./animated-text";
 
 interface HeroSectionProps {
   onContactClick?: () => void;
@@ -11,6 +12,13 @@ export function HeroSection({
   onMusicClick,
   onShowsClick,
 }: HeroSectionProps) {
+  const phrases = [
+    "SONIC ARCHITECT",
+    "DIGITAL SHAMAN",
+    "AURAL HEALER",
+    "COSMIC CREATOR"
+  ];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -34,6 +42,8 @@ export function HeroSection({
     },
   };
 
+
+
   return (
     <motion.div
       variants={containerVariants}
@@ -44,17 +54,22 @@ export function HeroSection({
       {/* Artist Name */}
       <motion.h1
         variants={itemVariants}
-        className="font-futuristic font-black text-3xl md:text-5xl lg:text-6xl text-white letter-spacing-ultra
-                   animate-float text-glow animate-glow"
+        className="font-futuristic font-black text-3xl md:text-5xl lg:text-6xl text-white letter-spacing-ultra text-outline-glow animate-pulse-slow"
       >
-        A R B O R E L I C S
+        ARBORELICS
       </motion.h1>
 
       {/* Subtitle */}
       <motion.div variants={itemVariants} className="mt-8 space-y-2">
-        <p className="text-[var(--cosmic-ethereal)] text-lg md:text-xl letter-spacing-ultra font-light animate-pulse-slow">
-          SONIC ARCHITECT
-        </p>
+                                <AnimatedText
+          phrases={phrases}
+          cycleInterval={6000}
+          scrambleEffect={true}
+          scrambleDuration={4000}
+          scrambleMode="stagger"
+          scrambleChars="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|"
+          className="text-[var(--cosmic-ethereal)] text-lg md:text-xl letter-spacing-medium font-light"
+        />
         <p className="text-white/60 text-sm tracking-wide">
           Where ancient wisdom meets future sound
         </p>

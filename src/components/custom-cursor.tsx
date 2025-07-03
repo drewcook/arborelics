@@ -21,7 +21,7 @@ export function CustomCursor() {
     <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]">
       {/* Outer glow layer */}
       <div
-        className="absolute w-8 h-8 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out"
+        className="absolute w-8 h-8 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-100 ease-out animate-glow"
         style={{
           left: mousePosition.x,
           top: mousePosition.y,

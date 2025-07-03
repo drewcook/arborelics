@@ -71,9 +71,9 @@ export function CircuitTree() {
         width="800"
         height="1000"
         viewBox="0 0 400 500"
-        className="opacity-30"
+        className="opacity-20"
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.3, scale: 1 }}
+        animate={{ opacity: 0.2, scale: 1 }}
         transition={{ duration: 2, delay: 1 }}
       >
         {/* Circuit board paths */}
