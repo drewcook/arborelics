@@ -74,7 +74,7 @@ export function LoadingScreen() {
           <motion.div
             initial={{ width: "0%" }}
             animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.3 }}
             className="h-full bg-[var(--cosmic-ethereal)] rounded-full"
           />
           <div className="loading-bar absolute top-0 left-0 w-20 h-full"></div>

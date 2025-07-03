@@ -128,17 +128,18 @@ export function AnimatedText({
   const characterVariants = {
     hidden: {
       opacity: scrambleEffect ? 1 : 0,
-      [entryValues.axis || "y"]: scrambleEffect ? 0 : entryValues.from,
+      y: entryValues.axis === "x" ? 0 : (scrambleEffect ? 0 : entryValues.from),
+      x: entryValues.axis === "x" ? (scrambleEffect ? 0 : entryValues.from) : 0,
       transition: {
         duration: 0.3,
       }
     },
     visible: {
       opacity: 1,
-      [entryValues.axis || "y"]: 0,
+      y: 0,
+      x: 0,
       transition: {
         duration: scrambleEffect ? 0 : 0.4,
-        ease: "easeOut",
       }
     },
     // exit: {

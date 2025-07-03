@@ -52,7 +52,7 @@ export function ReusableDialog({
             >
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-futuristic letter-spacing-ultra text-[var(--primary)]">
+                <h2 className="text-xl font-futuristic letter-spacing-medium text-[var(--primary)]">
                   {title}
                 </h2>
                 <button

@@ -148,7 +148,6 @@ export function CircuitTree() {
               delay: pulse.delay,
               repeat: Infinity,
               repeatDelay: 5,
-              ease: "easeOut"
             }}
           />
         ))}
@@ -175,7 +174,6 @@ export function CircuitTree() {
             transition={{
               duration: 0.3,
               delay: 2 + index * 0.05,
-              ease: "easeOut"
             }}
           />
         ))}
