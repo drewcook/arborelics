@@ -13,10 +13,11 @@ export function HeroSection({
   onShowsClick,
 }: HeroSectionProps) {
   const phrases = [
+    "COSMIC CREATOR",
     "SONIC ARCHITECT",
-    "DIGITAL SHAMAN",
     "AURAL HEALER",
-    "COSMIC CREATOR"
+    "VIBES REVERBERATOR",
+    "DIGITAL SHAMAN",
   ];
 
   const containerVariants = {
@@ -61,7 +62,7 @@ export function HeroSection({
 
       {/* Subtitle */}
       <motion.div variants={itemVariants} className="mt-8 space-y-2">
-                                <AnimatedText
+        <AnimatedText
           phrases={phrases}
           cycleInterval={6000}
           scrambleEffect={true}

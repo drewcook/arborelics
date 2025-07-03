@@ -8,7 +8,7 @@ interface AnimatedTextProps {
   className?: string;
   staggerDelay?: number;
   entryDirection?: "up" | "down" | "left" | "right";
-  exitDirection?: "up" | "down" | "left" | "right";
+  // exitDirection?: "up" | "down" | "left" | "right";
   scrambleEffect?: boolean;
   scrambleDuration?: number;
   scrambleChars?: string;
@@ -22,7 +22,7 @@ export function AnimatedText({
   className = "",
   staggerDelay = 0.05,
   entryDirection = "up",
-  exitDirection = "up",
+  // exitDirection = "up",
   scrambleEffect = false,
   scrambleDuration = 1000,
   scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*",

@@ -30,11 +30,13 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <div className="h-screen w-screen bg-black text-white overflow-hidden relative">
       <CustomCursor />
-
-      {isLoading && <LoadingScreen />}
 
       {/* Background with circuit tree */}
       <motion.div
