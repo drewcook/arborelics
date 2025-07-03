@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ARBORELICS - Electronic Music Producer",
-  description: "Electronic music producer and performer",
+  title: "Arborelics - A Music Producer and Performer",
+  description: "Music producer and performer in the styles of downtempo, lo-fi, hip-hop, and electronic music",
 };
 
 export default function RootLayout({

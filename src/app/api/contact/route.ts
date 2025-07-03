@@ -22,24 +22,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create transporter (you'll need to configure this with real SMTP settings)
-    const transporter = nodemailer.createTransporter({
-      host: "smtp.gmail.com", // or your SMTP provider
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.EMAIL_USER, // your email
-        pass: process.env.EMAIL_PASSWORD, // your email password or app password
-      },
-    });
+    // Create Proton Mail transporter
+    const transporter = nodemailer.createTransport({
+        service: 'Proton',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD
+        },
+      });
 
     // Email options
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: "contact@arborelics.com",
-      subject: `New Contact Form Message from ${name}`,
+      subject: `Website Request from ${name}`,
       html: `
-        <h2>New Message from ARBORELICS Website</h2>
+        <h2>New Contact Form Request</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Message:</strong></p>

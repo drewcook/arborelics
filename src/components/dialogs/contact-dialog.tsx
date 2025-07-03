@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ReusableDialog } from "./reusable-dialog";
+import { useToast } from "../../hooks/use-toast";
 
 interface ContactDialogProps {
   isOpen: boolean;
@@ -28,6 +29,7 @@ export function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -77,12 +79,20 @@ export function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
       }
 
       // Success
-      alert("Message sent successfully! Thank you for reaching out.");
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for reaching out!",
+        variant: "default"
+      });
       setFormData({ name: "", email: "", message: "" });
       setErrors({});
       onClose();
-    } catch (error) {
-      alert("Failed to send message. Please try again later.");
+    } catch {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again later or reach out on social media.",
+        variant: "destructive"
+      });
     } finally {
       setIsSubmitting(false);
     }
